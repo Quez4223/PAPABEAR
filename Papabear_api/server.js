@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
+const papaController = require('./controllers/papabear')
+
 const app = express()
 const PORT = 3000
 const DBNAME = 'papabear'
@@ -28,8 +30,6 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json())
 
-//CONTROLLER
-const papaController = require('./controllers/papabear')
 
 app.use('/papabear', papaController)
 
