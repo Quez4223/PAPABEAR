@@ -33,4 +33,27 @@ Papa.post('/', (req, res) => {
     console.log(req.body)
 })
 
+// UPDATE
+Papa.put('/:id', (req, res) => {
+    PapaBear.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedTask) => {
+        if (err) {
+            res.status(400).json({ error: err.message })
+        }
+
+        res.status(200).json(updatedTask)
+    })
+})
+
+
+// DELETE
+Papa.delete('/:id', (req, res) => {
+    PapaBear.findByIdAndRemove(req.params.id, (err, deletedTask) => {
+        if (err) {
+            res.status(400).json({ error: err.message })
+        }
+
+        res.status(200).json(deletedTask)
+    })
+})
+
 module.exports = Papa
