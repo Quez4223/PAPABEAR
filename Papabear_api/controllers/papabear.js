@@ -21,4 +21,16 @@ Papa.get('/seed', (req, res) => {
     )
 })
 
+// CREATE
+Papa.post('/', (req, res) => {
+    PapaBear.create(req.body, (err, createdTask) => {
+        if (err) {
+            res.status(400).json({ error: err.message })
+        }
+
+        res.status(200).send(createdTask)
+    })
+    console.log(req.body)
+})
+
 module.exports = Papa
